@@ -1,19 +1,31 @@
 
 #include "monty.h"
-settings_t settings;
+global_var var_global;
 /**
- * main - entry point
- * @argc: count of arguments
- * @argv: The arguments
- * Description: entry point for the program to exec monty code
- * Return: 0 on success
- */
-int main(int argc, char **argv)
+ * main - driver function for monty program
+ * @ac: int num of arguments
+ * @av: opcode file
+ * Return: 0
+*/
+
+void read_file(char *filename, stack_t **stack);
+
+void free_dlistint(stack_t *head);
+
+int main(int ac, char **av)
 {
-	set();
-	verify_args(argc);
-	open_and_read(*(argv + 1));
-	clean();
-	return (EXIT_SUCCESS);
+	stack_t *stack;
+
+	stack = NULL;
+	if (ac != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+
+	read_file(av[1], &stack);
+    /* recordar liberar memorias */
+	free_dlistint(stack);
+	return (0);
 }
 
