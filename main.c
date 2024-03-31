@@ -80,5 +80,6 @@ int main(void) {
 		}
 	}
 	printf("is stack empty: %d \n", is_empty(&stack));
+	pop(&stack);
 	return (0);
 }
